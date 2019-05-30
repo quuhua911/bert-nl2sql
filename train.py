@@ -679,7 +679,20 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
     cnt_wo = 0 # of where operator
     cnt_wv = 0 # of where-value
     cnt_wvi = 0 # of where-value index (on question tokens)
-    cnt_
+
+    # group by and order by
+    cnt_gn = 0
+    cnt_gc = 0
+    cnt_hn = 0
+    cnt_hc = 0
+    cnt_ho = 0
+    cnt_hv = 0
+    cnt_hvi = 0
+    cnt_on = 0
+    cnt_oc = 0
+    cnt_oa = 0
+    cnt_oo = 0
+
     cnt_lx = 0  # of logical form acc
     cnt_x = 0   # of execution acc
 
@@ -705,9 +718,11 @@ def train(train_loader, train_table, model, model_bert, opt, bert_config, tokeni
         # tb   : table
         # hs_t : tokenized headers. Not used.
 
-        g_sn, g_sc, g_sa, g_wn, g_wc, g_wo, g_wv = get_g(sql_i)
+        g_sn, g_sc, g_sa, g_wn, g_wc, g_wo, g_wv, \
+            g_gn, g_gc, g_hn, g_hc, g_ho, g_hv, g_hvi, g_on, g_oc, g_oa, g_oo = get_g(sql_i)
         # get ground truth where-value index under CoreNLP tokenization scheme. It's done already on trainset.
         g_wvi_corenlp = get_g_wvi_nltk(t)
+
 
         wemb_n, wemb_h, l_n, l_hpu, l_hs, \
         nlu_tt, t_to_tt_idx, tt_to_t_idx \
@@ -999,7 +1014,7 @@ if __name__ == '__main__':
     epoch_best = -1
     for epoch in range(args.tepoch):
         # train
-        # todo: train details
+        #  todo: train details
         acc_train, aux_out_train = train(train_loader,
                                          train_table,
                                          model,

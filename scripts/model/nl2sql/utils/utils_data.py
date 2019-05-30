@@ -123,6 +123,16 @@ def get_g(sql_i):
     g_wc = []
     g_wo = []
     g_wv = []
+    g_gn = []
+    g_gc = []
+    g_hn = []
+    g_hc = []
+    g_ho = []
+    g_hv = []
+    g_on = []
+    g_oc = []
+    g_oa = []
+    g_oo = []
     for b, sql in enumerate(sql_i):
         temp = {}
         # SELECT部分
